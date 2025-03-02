@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Abredagn Kebede</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">DevMe</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="nav-toggle">≡</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div style="height: 200px; background: linear-gradient(120deg, #84fab0, #8fd3f4); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                        Project Image
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <p>A full-stack e-commerce solution with product management, user authentication, and payment processing.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" style="padding: 8px 15px; font-size: 0.9rem;">View Demo</a>
+                            <a href="#" style="display: flex; align-items: center;">
+                                <span style="margin-left: 5px;">GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div style="height: 200px; background: linear-gradient(120deg, #a1c4fd, #c2e9fb); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                        Project Image
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Task Management App</h3>
+                        <p>A collaborative task manager with real-time updates, team workspaces, and analytics dashboard.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Redux</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" style="padding: 8px 15px; font-size: 0.9rem;">View Demo</a>
+                            <a href="#" style="display: flex; align-items: center;">
+                                <span style="margin-left: 5px;">GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div style="height: 200px; background: linear-gradient(120deg, #fbc2eb, #a6c1ee); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                        Project Image
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">AI Content Generator</h3>
+                        <p>A web application that leverages machine learning to generate content based on user inputs and preferences.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Vue.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn" style="padding: 8px 15px; font-size: 0.9rem;">View Demo</a>
+                            <a href="#" style="display: flex; align-items: center;">
+                                <span style="margin-left: 5px;">GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">DevMe</div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="experience.html">Experience</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Abredagn Kebede. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation toggle for mobile
+        document.querySelector('.nav-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
