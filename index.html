@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Doe | Software Engineer</title>
+    <title>Abredagn Kebede | Software Engineering Student</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
@@ -28,33 +29,108 @@
     <section id="hero">
         <div class="container hero-content">
             <div class="hero-text">
-                <h1>Hi, I'm <span class="highlight">John Doe</span><br>Software Engineer</h1>
-                <p>Passionate about creating elegant solutions to complex problems. Specialized in full-stack development with expertise in modern web technologies.</p>
+                <h1>Hi, I'm <span class="highlight">Abredagn Kebede</span><br>Software Engineering Student</h1>
+                <p>Aspiring AI & Web Developer passionate about solving real-world problems through technology. With experience in both frontend and backend development, I've solved over 400 problems on LeetCode and Codeforces.</p>
                 <div class="hero-btns">
                     <a href="projects.html" class="btn">View My Work</a>
                     <a href="contact.html" class="btn" style="background: transparent; color: var(--primary); margin-left: 15px; border: 1px solid var(--primary);">Contact Me</a>
                 </div>
                 <div class="social-links">
-                    <a href="#" class="social-icon">
-                        <i>in</i>
+                    <a href="https://www.linkedin.com/in/abredagn/" class="social-icon" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="#" class="social-icon">
-                        <i>gh</i>
+                    <a href="https://github.com/AbredagnKebede" class="social-icon" target="_blank">
+                        <i class="fab fa-github"></i>
                     </a>
-                    <a href="#" class="social-icon">
-                        <i>tw</i>
+                    <a href="https://leetcode.com/abredagn/" class="social-icon" target="_blank">
+                        <i class="fas fa-code"></i>
                     </a>
                 </div>
             </div>
             <div class="hero-image">
                 <div class="circular-image-container">
                     <div class="circular-image">
-                        <img src="assets\me .JPG" alt="John Doe"> 
+                        <img src="assets\image\IMG_20240307_143045_104~2_1.jpeg" alt="Abredagn Kebede"> 
                         <div class="placeholder-image">
                             &lt; / &gt;
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">HTML</div>
+                        <div class="skill-item">CSS</div>
+                        <div class="skill-item">JavaScript</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">PHP</div>
+                        <div class="skill-item">Node.js</div>
+                        <div class="skill-item">Express.js</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">MySQL</div>
+                        <div class="skill-item">MongoDB</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>AI/ML</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">scikit-learn</div>
+                        <div class="skill-item">TensorFlow</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Git</div>
+                        <div class="skill-item">GitHub</div>
+                        <div class="skill-item">VS Code</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="featured-projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project cards will be populated from GitHub -->
+                <div class="project-card">
+                    <h3>Loading projects...</h3>
+                    <p>Please check the Projects page for a complete list of my work.</p>
+                </div>
+            </div>
+            <div class="center-btn">
+                <a href="projects.html" class="btn">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Goals Section -->
+    <section id="career-goals">
+        <div class="container">
+            <h2 class="section-title">Career Goal</h2>
+            <div class="goal-content">
+                <p>To become a skilled AI and software engineer working on impactful projects at the intersection of intelligent systems and human-centered design.</p>
             </div>
         </div>
     </section>
@@ -73,7 +149,7 @@
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2025 John Doe. All rights reserved.
+                &copy; 2024 Abredagn Kebede. All rights reserved.
             </div>
         </div>
     </footer>
@@ -90,6 +166,53 @@
                 document.querySelector('.nav-links').classList.remove('active');
             });
         });
+
+        // Fetch GitHub projects
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchGitHubProjects();
+        });
+
+        function fetchGitHubProjects() {
+            fetch('https://api.github.com/users/AbredagnKebede/repos')
+                .then(response => response.json())
+                .then(data => {
+                    const projectsContainer = document.querySelector('.projects-grid');
+                    projectsContainer.innerHTML = '';
+                    
+                    // Display only 3 featured projects
+                    const featuredProjects = data.filter(repo => !repo.fork).slice(0, 3);
+                    
+                    featuredProjects.forEach(repo => {
+                        const projectCard = document.createElement('div');
+                        projectCard.className = 'project-card';
+                        
+                        projectCard.innerHTML = `
+                            <h3>${repo.name}</h3>
+                            <p>${repo.description || 'No description available'}</p>
+                            <div class="project-links">
+                                <a href="${repo.html_url}" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                                ${repo.homepage ? `<a href="${repo.homepage}" target="_blank" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> Live Demo
+                                </a>` : ''}
+                            </div>
+                        `;
+                        
+                        projectsContainer.appendChild(projectCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching GitHub projects:', error);
+                    const projectsContainer = document.querySelector('.projects-grid');
+                    projectsContainer.innerHTML = `
+                        <div class="project-card">
+                            <h3>Error loading projects</h3>
+                            <p>Please check the Projects page for a complete list of my work.</p>
+                        </div>
+                    `;
+                });
+        }
     </script>
 </body>
 </html>
