@@ -10,7 +10,7 @@
     <!-- Header -->
     <header>
         <div class="container nav-container">
-            <a href="index.html" class="logo">DevMe</a>
+            <a href="index.html" class="logo">DevPortfolio</a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -28,47 +28,63 @@
     <section id="contact">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
+            <p class="section-description">Have a question or want to work together? Feel free to reach out!</p>
+            
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p>Feel free to reach out for collaborations or just a friendly chat.</p>
                     <div class="contact-item">
-                        <div class="contact-icon">@</div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>abredagn@gmail.com</p>
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p>abredagn.kebede@example.com</p>
                         </div>
                     </div>
+                    
                     <div class="contact-item">
                         <div class="contact-icon">📱</div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+251953775288</p>
+                        <div class="contact-text">
+                            <h3>Phone</h3>
+                            <p>+1 (123) 456-7890</p>
                         </div>
                     </div>
+                    
                     <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Addis Ababa, Ethiopia</p>
+                        <div class="contact-icon">🔗</div>
+                        <div class="contact-text">
+                            <h3>Social</h3>
+                            <div class="social-links-contact">
+                                <a href="https://www.linkedin.com/in/abredagn/" target="_blank" class="social-link">LinkedIn</a>
+                                <a href="https://github.com/AbredagnKebede" target="_blank" class="social-link">GitHub</a>
+                                <a href="https://leetcode.com/abredagn/" target="_blank" class="social-link">LeetCode</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="contact-form">
-                    <form>
+                    <form action="process_contact.php" method="POST" id="contactForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
                         </div>
+                        
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
+                        
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
                         </div>
+                        
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                        
+                        <button type="submit" class="btn btn-full">Send Message</button>
+                        <div id="form-status"></div>
                     </form>
                 </div>
             </div>
@@ -79,7 +95,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">DevMe</div>
+                <div class="footer-logo">DevPortfolio</div>
                 <div class="footer-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
@@ -104,6 +120,32 @@
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function() {
                 document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+        
+        // Form submission with AJAX
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const statusDiv = document.getElementById('form-status');
+            
+            fetch('process_contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    statusDiv.innerHTML = '<p class="success-message">Message sent successfully! I\'ll get back to you soon.</p>';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    statusDiv.innerHTML = '<p class="error-message">Error: ' + data.message + '</p>';
+                }
+            })
+            .catch(error => {
+                statusDiv.innerHTML = '<p class="error-message">An error occurred. Please try again later.</p>';
+                console.error('Error:', error);
             });
         });
     </script>
